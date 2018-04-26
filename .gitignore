@@ -1,0 +1,11 @@
+client/client.js
+server/app.js
+src/config.js
+*.eot  
+*.woff
+*.woff2
+*.svg
+*.ttf
+node_modules/
+.build/
+.DS_store

@@ -1,0 +1,43 @@
+{
+    "env": {
+        "browser":true,
+        "node": true,
+        "es6": true
+    },
+    "extends": [ "airbnb", "plugin:flowtype/recommended", "plugin:react/recommended", "plugin:ava/recommended"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "babel", "react", "flowtype", "ava"
+    ],
+    "rules": {
+        "no-console": [
+          "error", { 
+            "allow": ["log","warn", "error"] 
+          }
+        ],
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always",
+            { "omitLastInOneLineBlock": true }
+        ]
+    }
+}

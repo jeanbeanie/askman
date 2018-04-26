@@ -1,0 +1,39 @@
+html, body{
+  background-color:#eee;
+}
+
+body{
+  font-family: inherit;
+}
+
+h1 {
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+#homeImage {
+  width: 18rem;
+  padding: 3rem;
+}
+
+.nav-link {
+  font-size: larger;
+  font-weight: bolder;
+  color: darkgrey;
+}
+
+.nav-link:hover{
+  color: dimgrey;
+}
+
+#layout-container {
+  margin-top: 2rem;
+}
+
+.jumbotron {
+  color:dimgrey;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
