@@ -28,10 +28,11 @@ class HomeContainer extends React.Component <{}, {}> {
   }
 
   render() {
-    const { title } = this.state || this.props;
     return (
       <div className="text-center">
-        <h1>{title}</h1>
+        <h1 id="headline">AskManager</h1>
+        <strong id="subheadline">Set It and Forget It Asking Via SMS!</strong>
+        <hr />
         <form onSubmit={this.handleSubmit}>
           <label>
             Task
@@ -48,7 +49,7 @@ class HomeContainer extends React.Component <{}, {}> {
             <input className="form-control" defaultValue="15555555555" type="tel" size="10"/>
           </label>
           <br />
-          <input type="submit" value="Submit Ask" />
+          <input type="submit" className="btn btn-lg" value="Submit Ask" />
         </form>
       </div>
     );
