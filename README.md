@@ -1,10 +1,8 @@
-# MERN Starter App
+# [IN DEV] AskMan - Manage Asks Via SMS
 
-A seed starter app using Node (Express) and React (server side rendering) created to be used as the base for future projects and whatnot. So far successfully used to create my blog Im So Code (https://github.com/jeanbeanie/imsocode-blog-2)
+Repo for AskMan website, a site that allows set it and forget it asking via SMS. Personal quality of life project.
 
-Webpack/Babel (with hot reloading) is set up for development. Ava is included for test running.
-
-### Create your config file (see src/config.example.js), then just add water
+### If you want to run, clone this and create your config file (see src/config.example.js) then run
 > ```npm install```
 
 ##### Compile code and start server in production
@@ -18,7 +16,6 @@ Webpack/Babel (with hot reloading) is set up for development. Ava is included fo
 
 ##### ...or watch your tests as you write code
 > ```npm watch```
-### Have fun!
 ----------------------
 
 ...written by me <http://www.twitter.com/onlyjeanbean> ✌🏽🌺
