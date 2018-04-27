@@ -6,6 +6,10 @@ body{
   font-family: inherit;
 }
 
+label {
+  display: block;
+}
+
 input{
   background-color: #222 !important;
   color: white !important;
@@ -25,12 +29,18 @@ input[type=submit]{
   text-align: center;
   font-family: monospace;
   font-weight: bold;
-  margin-bottom:1rem;
+  margin-bottom:2rem;
 }
 
 #subheadline {
   text-transform: uppercase; 
   opacity: 0.5;
+}
+
+.title-badge {
+  background-color:#222;
+  padding-bottom: .8rem;
+  padding-top: .8rem;
 }
 
 .nav-link {
@@ -50,7 +60,7 @@ input[type=submit]{
 .jumbotron {
   color:grey;
   color: #96a9a5 !important;
-  padding-bottom: 1rem;
+  padding: 2rem 10rem 0rem 10rem;
   background-color: #333;
   border-radius: 10px;
   border: 2px solid #444;
