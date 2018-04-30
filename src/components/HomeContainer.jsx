@@ -3,7 +3,6 @@
 
 import React from 'react';
 
-
 class HomeContainer extends React.Component <{}, {}> {
   constructor(props: {}) {
     super(props);
@@ -41,28 +40,61 @@ class HomeContainer extends React.Component <{}, {}> {
                 <input className="form-control" type="text" defaultValue="take out the trash" />
               </label>
             </div>
-
+            { 
+              true?
+            (
+            <div className="col-sm form-group">
+              <label>
+              Weekdays
+            <div className="col-sm form-check form-check-inline input">
+              <label>
+              S <input className="form-check-input" type="checkbox" />
+              </label>
+              <label>
+              M <input className="form-check-input" type="checkbox" />
+              </label>
+              <label>
+              T <input className="form-check-input" type="checkbox" />
+              </label>
+              <label>
+              W <input className="form-check-input" type="checkbox" />
+              </label>
+              <label>
+              T <input className="form-check-input" type="checkbox" />
+              </label>
+              <label>
+              F <input className="form-check-input" type="checkbox" />
+              </label>
+              <label>
+              S <input className="form-check-input" type="checkbox" />
+              </label>
+            </div>
+              </label>
+            </div>
+            )
+            :
+            (
             <div className="col-sm form-group">
               <label>
               Due Date
                 <input className="form-control" type="date" />
               </label>
             </div>
-
-          </div>
-          <div className="row">
+            )
+            }
             <div className="col-sm form-group">
               <label>
-              Possible Names
-                <input className="form-control" defaultValue="babe, baby, bae, boo, love" type="text" />
+              Due Time
+                <input className="form-control" type="time" />
               </label>
             </div>
+
           </div>
           <div className="row">
 
             <div className="col-sm form-group">
               <label>
-              Possible Intros
+              Intros
                 <input className="form-control" defaultValue="don't forget to, oh yea can you, I need a favor can you " type="text" />
               </label>
             </div>
@@ -71,7 +103,7 @@ class HomeContainer extends React.Component <{}, {}> {
 
             <div className="col-sm form-group">
               <label>
-              Possible Endings
+              Endings
                 <input className="form-control" defaultValue="thank you, thx so much, thanks, I appreciate it" type="text" />
               </label>
             </div>
@@ -85,10 +117,16 @@ class HomeContainer extends React.Component <{}, {}> {
               Phone Number (10 Digit)
                 <input className="form-control" defaultValue="15555555555" type="tel" size="10" />
               </label>
-              <input type="submit" className="btn btn-lg" value="Submit Ask" />
+            </div>
+            <div className="col-sm form-group">
+              <label>
+              Names
+                <input className="form-control" defaultValue="babe, baby, bae, boo, love" type="text" />
+              </label>
             </div>
 
           </div>
+              <input type="submit" className="btn" value="SUBMIT ASK" />
         </form>
       </div>
     );
