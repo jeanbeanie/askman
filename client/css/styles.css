@@ -7,20 +7,22 @@ body{
 }
 
 label {
+  text-align:left;
   display: block;
+  font-weight: bold;
 }
 
-input{
+.input, input{
   background-color: #222 !important;
   color: white !important;
   border: 2px solid #444 !important;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: .5rem 1rem 0 1rem;
 }
 
 input[type=submit]{
   color: lightseagreen !important;
   text-transform: uppercase;
+  font-weight: bold;
 
 }
 
