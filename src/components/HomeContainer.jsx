@@ -40,47 +40,47 @@ class HomeContainer extends React.Component <{}, {}> {
                 <input className="form-control" type="text" defaultValue="take out the trash" />
               </label>
             </div>
-            { 
-              true?
-            (
-            <div className="col-sm form-group">
-              <label>
+            {
+              true ?
+                (
+                  <div className="col-sm form-group">
+                    <label>
               Weekdays
-            <div className="col-sm form-check form-check-inline input">
-              <label>
+                      <div className="col-sm form-check form-check-inline input">
+                        <label>
               S <input className="form-check-input" type="checkbox" />
-              </label>
-              <label>
+                        </label>
+                        <label>
               M <input className="form-check-input" type="checkbox" />
-              </label>
-              <label>
+                        </label>
+                        <label>
               T <input className="form-check-input" type="checkbox" />
-              </label>
-              <label>
+                        </label>
+                        <label>
               W <input className="form-check-input" type="checkbox" />
-              </label>
-              <label>
+                        </label>
+                        <label>
               T <input className="form-check-input" type="checkbox" />
-              </label>
-              <label>
+                        </label>
+                        <label>
               F <input className="form-check-input" type="checkbox" />
-              </label>
-              <label>
+                        </label>
+                        <label>
               S <input className="form-check-input" type="checkbox" />
-              </label>
-            </div>
-              </label>
-            </div>
-            )
-            :
-            (
-            <div className="col-sm form-group">
-              <label>
+                        </label>
+                      </div>
+                    </label>
+                  </div>
+                )
+                :
+                (
+                  <div className="col-sm form-group">
+                    <label>
               Due Date
-                <input className="form-control" type="date" />
-              </label>
-            </div>
-            )
+                      <input className="form-control" type="date" />
+                    </label>
+                  </div>
+                )
             }
             <div className="col-sm form-group">
               <label>
@@ -126,7 +126,7 @@ class HomeContainer extends React.Component <{}, {}> {
             </div>
 
           </div>
-              <input type="submit" className="btn" value="SUBMIT ASK" />
+          <input type="submit" className="btn" value="SUBMIT ASK" />
         </form>
       </div>
     );
