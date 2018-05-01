@@ -1,6 +1,8 @@
 # [IN DEV] AskMan - Manage Asks Via SMS
 
-Repo for AskMan website, a site that allows set it and forget it asking via SMS. Personal quality of life project.
+Repo for AskMan website, a site that allows set it and forget it asking via SMS. Personal quality of life project. (lol) Below is a screenshot of its most current look (project is in development):
+
+<img src=https://i.imgur.com/9hvRbBe.png >
 
 ### If you want to run, clone this and create your config file (see src/config.example.js) then run
 > ```npm install```
