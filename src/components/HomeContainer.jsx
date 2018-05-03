@@ -3,10 +3,18 @@
 
 import React from 'react';
 
-class HomeContainer extends React.Component <{}, {}> {
+type State = {
+  taskBody: string,
+  taskIsRepeatable: boolean
+};
+
+class HomeContainer extends React.Component <{}, State> {
   constructor(props: {}) {
     super(props);
-    this.state = {};
+    this.state = {
+      taskBody: 'take out the trash',
+      taskIsRepeatable: true,
+    };
   }
 
   componentDidMount() {
@@ -21,67 +29,97 @@ class HomeContainer extends React.Component <{}, {}> {
     }).catch(err => console.log('Error loading data in HomeContainer', err));
   }
 
+  handleChange = (event) => {
+    const { target } = event;
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
   handleSubmit = (event) => {
-    alert('Form submitted');
+    alert(`Task : ${this.state.taskBody} is submitted!`);
     event.preventDefault();
   }
 
   render() {
+    /* TODO map over weekdays array to return mulltiple inputs
+    const weekdays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+
+    const WeekdayCheckbox = (
+      <label>
+        S <input className="form-check-input" type="checkbox" />
+      </label>
+    );
+
+    const weekdayInputs = (
+      weekdays.map((day) =>
+        <WeekdayCheckbox />
+      )
+    )
+    */
+
+    const weekdayPicker = (
+      <div className="col-sm form-group">
+        <label>
+          Weekdays
+          <div className="col-sm form-check form-check-inline input">
+
+            <label>
+              S <input className="form-check-input" type="checkbox" />
+            </label>
+            <label>
+              M <input className="form-check-input" type="checkbox" />
+            </label>
+            <label>
+              T <input className="form-check-input" type="checkbox" />
+            </label>
+            <label>
+              W <input className="form-check-input" type="checkbox" />
+            </label>
+            <label>
+              T <input className="form-check-input" type="checkbox" />
+            </label>
+            <label>
+              F <input className="form-check-input" type="checkbox" />
+            </label>
+            <label>
+              S <input className="form-check-input" type="checkbox" />
+            </label>
+
+          </div>
+        </label>
+      </div>
+    );
+
+    const dayPicker = (
+      <div className="col-sm form-group">
+        <label>
+          Due Date
+          <input className="form-control" type="date" />
+        </label>
+      </div>
+    );
+
+    const dateOptions = this.state.taskIsRepeatable ? (weekdayPicker) : (dayPicker);
+
     return (
       <div className="text-center">
+
         <h1 id="headline"><span className="badge-pill title-badge">AskManager</span></h1>
         <strong id="subheadline">Set It and Forget It Asking Via SMS!</strong>
         <hr />
+
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col-sm form-group">
               <label>
               Task
-                <input className="form-control" type="text" defaultValue="take out the trash" />
+                <input className="form-control" name="taskBody" defaultValue={this.state.taskBody} onChange={this.handleChange} type="text" />
               </label>
             </div>
-            {
-              true ?
-                (
-                  <div className="col-sm form-group">
-                    <label>
-              Weekdays
-                      <div className="col-sm form-check form-check-inline input">
-                        <label>
-              S <input className="form-check-input" type="checkbox" />
-                        </label>
-                        <label>
-              M <input className="form-check-input" type="checkbox" />
-                        </label>
-                        <label>
-              T <input className="form-check-input" type="checkbox" />
-                        </label>
-                        <label>
-              W <input className="form-check-input" type="checkbox" />
-                        </label>
-                        <label>
-              T <input className="form-check-input" type="checkbox" />
-                        </label>
-                        <label>
-              F <input className="form-check-input" type="checkbox" />
-                        </label>
-                        <label>
-              S <input className="form-check-input" type="checkbox" />
-                        </label>
-                      </div>
-                    </label>
-                  </div>
-                )
-                :
-                (
-                  <div className="col-sm form-group">
-                    <label>
-              Due Date
-                      <input className="form-control" type="date" />
-                    </label>
-                  </div>
-                )
-            }
+            {dateOptions}
+
             <div className="col-sm form-group">
               <label>
               Due Time
