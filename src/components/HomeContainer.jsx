@@ -48,50 +48,19 @@ class HomeContainer extends React.Component <{}, State> {
   }
 
   render() {
-    /* TODO map over weekdays array to return mulltiple inputs
-    const weekdays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-
-    const WeekdayCheckbox = (
+    const weekdayList = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
+    const weekdayInputs = weekdayList.map(day =>
       <label>
-        S <input className="form-check-input" type="checkbox" />
+        {day[0].toUpperCase()} <input className="form-check-input" name={`taskWeekdays['${day}']`} type="checkbox" />
       </label>
     );
-
-    const weekdayInputs = (
-      weekdays.map((day) =>
-        <WeekdayCheckbox />
-      )
-    )
-    */
 
     const weekdayPicker = (
       <div className="col-sm form-group">
         <label>
           Weekdays
           <div className="col-sm form-check form-check-inline input">
-
-            <label>
-              S <input className="form-check-input" type="checkbox" />
-            </label>
-            <label>
-              M <input className="form-check-input" type="checkbox" />
-            </label>
-            <label>
-              T <input className="form-check-input" type="checkbox" />
-            </label>
-            <label>
-              W <input className="form-check-input" type="checkbox" />
-            </label>
-            <label>
-              T <input className="form-check-input" type="checkbox" />
-            </label>
-            <label>
-              F <input className="form-check-input" type="checkbox" />
-            </label>
-            <label>
-              S <input className="form-check-input" type="checkbox" />
-            </label>
-
+          {weekdayInputs}
           </div>
         </label>
       </div>
@@ -116,6 +85,7 @@ class HomeContainer extends React.Component <{}, State> {
         <hr />
 
         <form onSubmit={this.handleSubmit}>
+
           <div className="row">
             <div className="col-sm form-group">
               <label>
@@ -131,10 +101,9 @@ class HomeContainer extends React.Component <{}, State> {
                 <input className="form-control" name="taskDueTime" defaultValue={this.state.taskDueTime} onChange={this.handleChange} type="time" />
               </label>
             </div>
-
           </div>
-          <div className="row">
 
+          <div className="row">
             <div className="col-sm form-group">
               <label>
               Intros
@@ -142,16 +111,14 @@ class HomeContainer extends React.Component <{}, State> {
               </label>
             </div>
           </div>
-          <div className="row">
 
+          <div className="row">
             <div className="col-sm form-group">
               <label>
               Endings
                 <input className="form-control" defaultValue="thank you, thx so much, thanks, I appreciate it" type="text" />
               </label>
             </div>
-
-
           </div>
 
           <div className="row">
@@ -161,6 +128,7 @@ class HomeContainer extends React.Component <{}, State> {
                 <input className="form-control" defaultValue="15555555555" type="tel" size="10" />
               </label>
             </div>
+
             <div className="col-sm form-group">
               <label>
               Names
