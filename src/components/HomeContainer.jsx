@@ -5,6 +5,7 @@ import React from 'react';
 
 type State = {
   taskBody: string,
+  taskDueTime: string,
   taskIsRepeatable: boolean
 };
 
@@ -13,6 +14,7 @@ class HomeContainer extends React.Component <{}, State> {
     super(props);
     this.state = {
       taskBody: 'take out the trash',
+      taskDueTime: '12:00',
       taskIsRepeatable: true,
     };
   }
@@ -30,15 +32,18 @@ class HomeContainer extends React.Component <{}, State> {
   }
 
   handleChange = (event) => {
+    // grab target element from the passed in event
     const { target } = event;
+    // grab the name and changed value from the target element
     const { value, name } = target;
+    // set the state property that matches the named element to the updated value
     this.setState({
       [name]: value,
     });
   }
 
   handleSubmit = (event) => {
-    alert(`Task : ${this.state.taskBody} is submitted!`);
+    alert(`Task : ${this.state.taskBody} due at ${this.state.taskDueTime} is submitted!`);
     event.preventDefault();
   }
 
@@ -123,7 +128,7 @@ class HomeContainer extends React.Component <{}, State> {
             <div className="col-sm form-group">
               <label>
               Due Time
-                <input className="form-control" type="time" />
+                <input className="form-control" name="taskDueTime" defaultValue={this.state.taskDueTime} onChange={this.handleChange} type="time" />
               </label>
             </div>
 
