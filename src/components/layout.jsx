@@ -14,7 +14,7 @@ const Layout = (props: Props) => (
 
     <nav className="navbar justify-content-end">
       <Link to="/" className="nav-link">AskMan</Link>
-      <Link to="/" className="nav-link">FAQ</Link>
+      <Link to="/" className="nav-link">+ Add New</Link>
     </nav>
 
     <div className="jumbotron">

@@ -9,7 +9,11 @@ type Props = {
 
 type State = {
   taskBody: string,
+  taskIntros: string,
+  taskEndings: string,
   taskDueTime: string,
+  phoneNumber: string,
+  recipientNames: string,
   taskIsRepeatable: boolean
 };
 
@@ -19,6 +23,10 @@ class HomeContainer extends React.Component <Props, State> {
     this.state = {
       taskBody: 'take out the trash',
       taskDueTime: '12:00',
+      phoneNumber: '15555555555',
+      recipientNames: 'babe, baby, bae, boo, love',
+      taskIntros: 'don\'t forget to, oh yea can you, I need a favor can you',
+      taskEndings: 'thank you, thx so much, thanks, I appreciate it',
       taskIsRepeatable: true,
     };
   }
@@ -122,7 +130,7 @@ class HomeContainer extends React.Component <Props, State> {
             <div className="col-sm form-group">
               <label htmlFor="taskIntros">
               Intros
-                <input className="form-control" name="taskIntros" id="taskIntros" defaultValue="don't forget to, oh yea can you, I need a favor can you " type="text" />
+                <input className="form-control" name="taskIntros" id="taskIntros" onChange={this.handleChange} defaultValue={this.state.taskIntros} type="text" />
               </label>
             </div>
           </div>
@@ -132,7 +140,7 @@ class HomeContainer extends React.Component <Props, State> {
             <div className="col-sm form-group">
               <label htmlFor="taskEndings">
               Endings
-                <input className="form-control" name="taskEndings" id="taskEndings" defaultValue="thank you, thx so much, thanks, I appreciate it" type="text" />
+                <input className="form-control" name="taskEndings" id="taskEndings" onChange={this.handleChange} defaultValue={this.state.taskEndings} type="text" />
               </label>
             </div>
           </div>
@@ -142,7 +150,7 @@ class HomeContainer extends React.Component <Props, State> {
             <div className="col-sm form-group">
               <label htmlFor="phoneNumber">
               Phone Number (10 Digit)
-                <input className="form-control" name="phoneNumber" id="phoneNumber" defaultValue="15555555555" type="tel" size="10" />
+                <input className="form-control" name="phoneNumber" id="phoneNumber" defaultValue={this.state.phoneNumber} onChange={this.handleChange} type="tel" size="10" />
               </label>
             </div>
 
@@ -150,12 +158,12 @@ class HomeContainer extends React.Component <Props, State> {
             <div className="col-sm form-group">
               <label htmlFor="recipientNames">
               Names
-                <input className="form-control" name="recipientNames" id="recipientNames" defaultValue="babe, baby, bae, boo, love" type="text" />
+                <input className="form-control" name="recipientNames" id="recipientNames" defaultValue={this.state.recipientNames} onChange={this.handleChange} type="text" />
               </label>
             </div>
           </div>
 
-          {/* FORM SUBMIT*/}
+          {/* FORM SUBMIT */}
           <input type="submit" className="btn" value="SUBMIT ASK" />
         </form>
       </div>
