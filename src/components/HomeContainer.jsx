@@ -11,6 +11,7 @@ type State = {
   taskBody: string,
   taskIntros: string,
   taskEndings: string,
+  taskWeekdays: Array<number>,
   taskDueTime: string,
   phoneNumber: string,
   recipientNames: string,
@@ -28,6 +29,7 @@ class HomeContainer extends React.Component <Props, State> {
       taskIntros: 'don\'t forget to, oh yea can you, I need a favor can you',
       taskEndings: 'thank you, thx so much, thanks, I appreciate it',
       taskIsRepeatable: true,
+      taskWeekdays: Array(7).fill(false),
     };
   }
 
@@ -46,17 +48,29 @@ class HomeContainer extends React.Component <Props, State> {
   handleChange = (event) => {
     // grab target element from the passed in event
     const { target } = event;
-    // grab the name and changed value from the target element
-    const { value, name } = target;
-    // set the state property that matches the named element to the updated value
-    this.setState({
-      [name]: value,
-    });
+    // grab the name from the target element
+    const { name } = target
+    // grab targets changed value, or checked status if checkbox
+    let value = target.type === 'checkbox' ? target.checked : target.value;
+
+    if (name === 'taskWeekdays') {
+      // get a copy of the current weekdays array
+      const { taskWeekdays } = this.state;
+      // overwrite the value that corresponds to the target weekday
+      taskWeekdays[target.id] = value;
+      // prepare updated array for upcoming setState
+      value = taskWeekdays;
+    } else {
+      // set the state property that matches the named element to the updated value
+      this.setState({
+        [name]: value,
+      });
+    }
   }
 
   // when form is submitted for now display an alert with components state for testing purposes
   handleSubmit = (event) => {
-    alert(`Task : ${this.state.taskBody} due at ${this.state.taskDueTime} is submitted!`);
+    console.log('State: ', this.state);
     event.preventDefault();
   }
 
@@ -64,9 +78,9 @@ class HomeContainer extends React.Component <Props, State> {
     const weekdayList = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
 
     // map over weekdayList and return a list of label/inputs for selecting weekdays
-    const weekdayInputs = weekdayList.map(day => (
-      <label htmlFor={`taskWeekdays['${day}']`} key={`taskWeekdays['${day}']`}>
-        {day[0].toUpperCase()} <input className="form-check-input" name={`taskWeekdays['${day}']`} id={`taskWeekdays['${day}']`} type="checkbox" />
+    const weekdayInputs = weekdayList.map((day, i) => (
+      <label htmlFor={`taskWeekdays['${i}']`} key={`taskWeekdays['${day}']`}>
+        {day[0].toUpperCase()} <input className="form-check-input" onChange={this.handleChange} name="taskWeekdays" id={i} type="checkbox" />
       </label>
     ));
 
