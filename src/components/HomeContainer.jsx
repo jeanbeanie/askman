@@ -11,6 +11,7 @@ type State = {
   taskBody: string,
   taskIntros: string,
   taskEndings: string,
+  randomText: string,
   taskWeekdays: Array<number>,
   taskDueTime: string,
   phoneNumber: string,
@@ -24,6 +25,7 @@ class HomeContainer extends React.Component <Props, State> {
     this.state = {
       taskBody: 'take out the trash',
       taskDueTime: '12:00',
+      randomText: 'Example random text',
       phoneNumber: '15555555555',
       recipientNames: 'babe, baby, bae, boo, love',
       taskIntros: 'don\'t forget to, oh yea can you, I need a favor can you',
@@ -35,6 +37,13 @@ class HomeContainer extends React.Component <Props, State> {
 
   componentDidMount() {
     this.loadInitialData();
+    this.generateRandomText();
+  }
+
+  generateRandomText = () => {
+    const { taskBody } = this.state;
+    const randomText = `${taskBody}`
+    this.setState({ randomText: randomText});
   }
 
   loadInitialData() {
