@@ -16,13 +16,13 @@ label {
   background-color: #222 !important;
   color: white !important;
   border: 2px solid #444 !important;
-  padding: .5rem 1rem 0 1rem;
 }
 
-input[type=submit]{
+.btn, input[type=submit]{
   color: lightseagreen !important;
   text-transform: uppercase;
   font-weight: bold;
+  margin-left: 1rem;
 
 }
 
@@ -57,6 +57,10 @@ input[type=submit]{
 
 #layout-container {
   margin-top: 2rem;
+}
+
+#randomText {
+  padding: 1rem;
 }
 
 .jumbotron {

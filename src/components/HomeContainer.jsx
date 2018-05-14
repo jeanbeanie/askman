@@ -43,8 +43,27 @@ class HomeContainer extends React.Component <Props, State> {
   }
 
   generateRandomText = () => {
+    // create func for returning random int based on arr length
+    const randInt = x => Math.floor(Math.random() * Math.floor(x));
+
+    // selecting one random word from string of words
+    const returnRandomWord = (string) => {
+      const wordsArray = string.split(',');
+      return wordsArray[randInt(wordsArray.length)];
+    };
+
+    // get task from current state
     const { taskBody } = this.state;
-    const randomText = `${taskBody}`;
+
+    // for strings of comma seperated words, get single rand word
+    const intro = returnRandomWord(this.state.taskIntros);
+    const ending = returnRandomWord(this.state.taskEndings);
+    const name = returnRandomWord(this.state.recipientNames);
+
+    // create a random example text to delight the user
+    const randomText = `${intro} ${taskBody}, ${ending} ${name}!`;
+
+    // update state to reflect the newly created random text example
     this.setState({ randomText });
   }
 
@@ -71,16 +90,18 @@ class HomeContainer extends React.Component <Props, State> {
       taskWeekdays[target.id] = value;
       // prepare updated array for upcoming setState
       value = taskWeekdays;
-    } else {
-      // set the state property that matches the named element to the updated value
-      this.setState({
-        [name]: value,
-      });
     }
+
+    // set the state property that matches the named element to the updated value
+    this.generateRandomText();
+    this.setState({
+      [name]: value,
+    });
   }
 
   // when form is submitted for now display an alert with components state for testing purposes
   handleSubmit = (event) => {
+    this.generateRandomText();
     console.log('State: ', this.state);
     event.preventDefault();
   }
@@ -129,6 +150,15 @@ class HomeContainer extends React.Component <Props, State> {
         <hr />
 
         <form onSubmit={this.handleSubmit}>
+
+          <div className="row">
+            {/* Example randomly generated SMS text using form fields*/}
+            <h6>
+              <strong id="subheadline">Example Random Text : </strong> {this.state.randomText}
+            </h6>
+            <button className="btn input" onClick={this.generateRandomText}>GENERATE</button>
+          </div>
+          <hr />
 
           <div className="row">
             {/* Subject body of task to be submitted */}
