@@ -11,6 +11,7 @@ type State = {
   taskBody: string,
   taskIntros: string,
   taskEndings: string,
+  taskDueDate: string,
   randomText: string,
   taskWeekdays: Array<number>,
   taskDueTime: string,
@@ -25,12 +26,13 @@ class HomeContainer extends React.Component <Props, State> {
     this.state = {
       taskBody: 'take out the trash',
       taskDueTime: '12:00',
+      taskDueDate: '',
       randomText: 'Example random text',
       phoneNumber: '15555555555',
       recipientNames: 'babe, baby, bae, boo, love',
       taskIntros: 'don\'t forget to, oh yea can you, I need a favor can you',
       taskEndings: 'thank you, thx so much, thanks, I appreciate it',
-      taskIsRepeatable: true,
+      taskIsRepeatable: false,
       taskWeekdays: Array(7).fill(false),
     };
   }
@@ -42,8 +44,8 @@ class HomeContainer extends React.Component <Props, State> {
 
   generateRandomText = () => {
     const { taskBody } = this.state;
-    const randomText = `${taskBody}`
-    this.setState({ randomText: randomText});
+    const randomText = `${taskBody}`;
+    this.setState({ randomText });
   }
 
   loadInitialData() {
@@ -58,7 +60,7 @@ class HomeContainer extends React.Component <Props, State> {
     // grab target element from the passed in event
     const { target } = event;
     // grab the name from the target element
-    const { name } = target
+    const { name } = target;
     // grab targets changed value, or checked status if checkbox
     let value = target.type === 'checkbox' ? target.checked : target.value;
 
@@ -108,9 +110,10 @@ class HomeContainer extends React.Component <Props, State> {
     // select the date task must be completed by using the browser's built in datepicker
     const dayPicker = (
       <div className="col-sm form-group">
-        <label htmlFor="dayPicker">
+        <label htmlFor="taskDueDate">
           Due Date
-          <input className="form-control" name="dayPicker" id="dayPicker" type="date" />
+          {/* TODO : valid date should be today and future only */}
+          <input onChange={this.handleChange} name="taskDueDate" className="form-control" id="taskDueDate" type="date" />
         </label>
       </div>
     );
