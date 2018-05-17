@@ -14,10 +14,13 @@ const Layout = (props: Props) => (
 
     <nav className="navbar justify-content-end">
       <Link to="/" className="nav-link">AskMan</Link>
-      <Link to="/" className="nav-link">+ Add New</Link>
+      <Link to="/add" className="nav-link">+ Add New</Link>
     </nav>
 
-    <div className="jumbotron">
+    <div className="jumbotron text-center">
+      <h1 id="headline"><span className="badge-pill title-badge">AskManager</span></h1>
+      <strong id="subheadline">Set It and Forget It Asking Via SMS!</strong>
+      <hr />
       {props.children}
     </div>
   </div>

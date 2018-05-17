@@ -12,9 +12,6 @@ type Props = {
 const RandomText = (props: Props) => {
   return (
     <div>
-      <h1 id="headline"><span className="badge-pill title-badge">AskManager</span></h1>
-      <strong id="subheadline">Set It and Forget It Asking Via SMS!</strong>
-      <hr />
       <div className="row">
         {/* Example randomly generated SMS text using form fields */}
         <h6>

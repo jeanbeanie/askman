@@ -63,6 +63,19 @@ label {
   padding: 1rem;
 }
 
+.table-dark{
+  background-color: #333;
+  color: lightgrey;
+}
+
+.table thead th {
+  color: lightseagreen;
+}
+
+.table td {
+  border: none;
+}
+
 .jumbotron {
   color:grey;
   color: #96a9a5 !important;

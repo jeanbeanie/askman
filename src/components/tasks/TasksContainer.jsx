@@ -3,72 +3,44 @@
 
 import React from 'react';
 
-import RandomText from './RandomText';
-import TaskForm from './TaskForm';
-import DatePicker from './DatePicker';
-
 type Props = {
   loadInitialData: ()=>{},
 };
 
 type State = {
-  taskBody: string,
-  taskIntros: string,
-  taskEndings: string,
-  taskDueDate: string,
-  randomText: string,
-  taskWeekdays: Array<number>,
-  taskDueTime: string,
-  phoneNumber: string,
-  recipientNames: string,
-  taskIsRepeatable: boolean
+  tasks: [
+    {
+      smsBody: string,
+      smsNumber: string,
+    }
+  ],
 };
+
+const exampleTasks = [
+  {
+    smsBody: 'Here is the first text message body!',
+    smsNumber: '16666666666',
+  },
+  {
+    smsBody: 'Here is some other text message body!',
+    smsNumber: '16666666666',
+  },
+  {
+    smsBody: 'Here is the final text message body!',
+    smsNumber: '16666666666',
+  },
+]
 
 class TasksContainer extends React.Component <Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      taskBody: 'take out the trash',
-      taskDueTime: '12:00',
-      taskDueDate: '',
-      randomText: 'Example random text',
-      phoneNumber: '15555555555',
-      recipientNames: 'babe, baby, bae, boo, love',
-      taskIntros: 'don\'t forget to, oh yea can you, I need a favor can you',
-      taskEndings: 'thank you, thx so much, thanks, I appreciate it',
-      taskIsRepeatable: true,
-      taskWeekdays: Array(7).fill(false),
+      tasks: exampleTasks,
     };
   }
 
   componentDidMount() {
     this.loadInitialData();
-    this.generateRandomText();
-  }
-
-  generateRandomText = (): void => {
-    // create func for returning random int based on arr length
-    const randInt = x => Math.floor(Math.random() * Math.floor(x));
-
-    // selecting one random word from string of words
-    const returnRandomWord = (string) => {
-      const wordsArray = string.split(',');
-      return wordsArray[randInt(wordsArray.length)];
-    };
-
-    // get task from current state
-    const { taskBody } = this.state;
-
-    // for strings of comma seperated words, get single rand word
-    const intro = returnRandomWord(this.state.taskIntros);
-    const ending = returnRandomWord(this.state.taskEndings);
-    const name = returnRandomWord(this.state.recipientNames);
-
-    // create a random example text to delight the user
-    const randomText = `${intro} ${taskBody}, ${ending} ${name}!`;
-
-    // update state to reflect the newly created random text example
-    this.setState({ randomText });
   }
 
   loadInitialData() {
@@ -79,55 +51,35 @@ class TasksContainer extends React.Component <Props, State> {
     }).catch(err => console.log('Error loading data in HomeContainer', err));
   }
 
-  handleChange = (event) => {
-    // grab target element from the passed in event
-    const { target } = event;
-    // grab the name from the target element
-    const { name } = target;
-    // grab targets changed value, or checked status if checkbox
-    let value = target.type === 'checkbox' ? target.checked : target.value;
-
-    if (name === 'taskWeekdays') {
-      // get a copy of the current weekdays array
-      const { taskWeekdays } = this.state;
-      // overwrite the value that corresponds to the target weekday
-      taskWeekdays[target.id] = value;
-      // prepare updated array for upcoming setState
-      value = taskWeekdays;
-    }
-
-    // set the state property that matches the named element to the updated value
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  // display state in console for testing purposes
-  handleSubmit = (event) => {
-    console.log('State: ', this.state);
-    event.preventDefault();
-  }
-
   render() {
+    const tasks = this.state.tasks.map((task, i) => (
+      <tr key={task.smsBody}>
+        <th>{i+1}</th>
+        <td>{task.smsBody}</td>
+        <td>{task.smsNumber}</td>
+        <td>SMTWTFS</td>
+        <td>+Edit</td>
+        <td>-Delete</td>
+      </tr>
+    ));
+
     return (
       <div className="text-center">
-
-        <RandomText
-          randomText={this.state.randomText}
-          generateText={this.generateRandomText}
-        />
-
-        <TaskForm
-          {...this.state}
-          datePicker={
-            <DatePicker
-              onChange={this.handleChange}
-              taskIsRepeatable={this.state.taskIsRepeatable}
-            />}
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-        />
-
+        <table className="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Task</th>
+              <th scope="col">Number</th>
+              <th scope="col">Due Time</th>
+              <th scope="col" />
+              <th scope="col" />
+            </tr>
+          </thead>
+          <tbody>
+            {tasks}
+          </tbody>
+        </table>
       </div>
     );
   }
