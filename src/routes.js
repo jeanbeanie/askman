@@ -1,7 +1,8 @@
 /* src/components/routes.js */
 /* @flow */
 
-import HomeContainer from './components/HomeContainer';
+import TaskContainer from './components/tasks/TaskContainer';
+import TasksContainer from './components/tasks/TasksContainer';
 import NotFound from './components/NotFound';
 import { metaData } from './config';
 
@@ -17,7 +18,13 @@ const routes: Array<{loadInitialData: () => {}}> = [
   {
     path: '/',
     exact: true,
-    component: HomeContainer,
+    component: TasksContainer,
+    loadInitialData: () => loadInitialData(),
+  },
+  {
+    path: '/add',
+    exact: true,
+    component: TaskContainer,
     loadInitialData: () => loadInitialData(),
   },
   {

@@ -1,4 +1,4 @@
-/* src/components/HomeContainer.jsx */
+/* src/components/tasks/TasksContainer.jsx */
 /* @flow */
 
 import React from 'react';
@@ -24,7 +24,7 @@ type State = {
   taskIsRepeatable: boolean
 };
 
-class HomeContainer extends React.Component <Props, State> {
+class TasksContainer extends React.Component <Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -133,4 +133,4 @@ class HomeContainer extends React.Component <Props, State> {
   }
 }
 
-export default HomeContainer;
+export default TasksContainer;
