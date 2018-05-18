@@ -36,7 +36,7 @@ const DatePicker = (props: Props) => {
       <label htmlFor="taskDueDate">
         Due Date
         {/* TODO : valid date should be today and future only */}
-        <input onChange={props.onChange} name="taskDueDate" className="form-control" id="taskDueDate" type="date" />
+        <input onChange={props.onChange} defaultValue={props.defaultDate} name="taskDueDate" className="form-control" id="taskDueDate" type="date" />
       </label>
     </div>
   );

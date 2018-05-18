@@ -2,10 +2,11 @@
 /* @flow */
 
 import React from 'react';
-
 import RandomText from './RandomText';
 import TaskForm from './TaskForm';
 import DatePicker from './DatePicker';
+
+const moment = require('moment');
 
 type Props = {
   loadInitialData: ()=>{},
@@ -27,16 +28,20 @@ type State = {
 class TaskContainer extends React.Component <Props, State> {
   constructor(props: Props) {
     super(props);
+    // default date and time set to an hour from current moment
+    const defaultDate = moment().format('YYYY-MM-DD');
+    const defaultTime = moment().add(1, 'hours').format('HH:mm');
+
     this.state = {
       taskBody: 'take out the trash',
-      taskDueTime: '12:00',
-      taskDueDate: '',
+      taskDueTime: defaultTime,
+      taskDueDate: defaultDate,
       randomText: 'Example random text',
       phoneNumber: '15555555555',
       recipientNames: 'babe, baby, bae, boo, love',
       taskIntros: 'don\'t forget to, oh yea can you, I need a favor can you',
       taskEndings: 'thank you, thx so much, thanks, I appreciate it',
-      taskIsRepeatable: true,
+      taskIsRepeatable: false,
       taskWeekdays: Array(7).fill(false),
     };
   }
@@ -102,9 +107,19 @@ class TaskContainer extends React.Component <Props, State> {
     });
   }
 
-  // display state in console for testing purposes
   handleSubmit = (event) => {
+    // display state in console for now
     console.log('State: ', this.state);
+
+    // check if task has single set due date, ie not repeatable
+    if (!this.state.taskIsRepeatable) {
+      const { taskDueDate } = this.state;
+
+      // check if entered due date is before current time
+      if (moment(taskDueDate).isBefore()) {
+        console.log('invalid date : must be a future date');
+      }
+    }
     event.preventDefault();
   }
 
@@ -122,6 +137,7 @@ class TaskContainer extends React.Component <Props, State> {
           datePicker={
             <DatePicker
               onChange={this.handleChange}
+              defaultDate={this.state.taskDueDate}
               taskIsRepeatable={this.state.taskIsRepeatable}
             />}
           onSubmit={this.handleSubmit}
