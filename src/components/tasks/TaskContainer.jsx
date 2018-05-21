@@ -22,7 +22,7 @@ type State = {
   taskDueTime: string,
   phoneNumber: string,
   recipientNames: string,
-  taskIsRepeatable: boolean
+  taskIsRepeatable: boolean,
 };
 
 class TaskContainer extends React.Component <Props, State> {
@@ -95,10 +95,15 @@ class TaskContainer extends React.Component <Props, State> {
     if (name === 'taskWeekdays') {
       // get a copy of the current weekdays array
       const { taskWeekdays } = this.state;
-      // overwrite the value that corresponds to the target weekday
-      taskWeekdays[target.id] = value;
-      // prepare updated array for upcoming setState
-      value = taskWeekdays;
+      // get submitted day from the target elements id
+      const day = target.id;
+      // check if submitted int is within valid weekday range
+      if (day >= 0 && day <= 7) {
+        // overwrite the value that corresponds to the target weekday
+        taskWeekdays[day] = value;
+        // prepare updated array for upcoming setState
+        value = taskWeekdays;
+      }
     }
 
     // set the state property that matches the named element to the updated value
@@ -114,10 +119,9 @@ class TaskContainer extends React.Component <Props, State> {
     // check if task has single set due date, ie not repeatable
     if (!this.state.taskIsRepeatable) {
       const { taskDueDate } = this.state;
-
-      // check if entered due date is before current time
-      if (moment(taskDueDate).isBefore()) {
-        console.log('invalid date : must be a future date');
+      // check if entered due day is before current day
+      if (moment(taskDueDate).isBefore([], 'day')) {
+        console.log('Error! Invalid date : must be a future date');
       }
     }
     event.preventDefault();
