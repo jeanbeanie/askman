@@ -18,6 +18,16 @@ const app = express();
 // Serve static files from directory './client'
 app.use(express.static('client'));
 
+// Task API Routes
+const task = require('../src/api/task');
+
+app.get('/api/tasks', (req, res) => {
+  task.getAll((result) => {
+    res.send(result);
+  });
+});
+
+// Public Routes
 app.get('*', (req, res) => {
   const promises = [];
   const context = {};
