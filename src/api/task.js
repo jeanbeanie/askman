@@ -1,7 +1,7 @@
 /* ./src/api/task.js */
 /* @flow */
 
-/* Twilio configuration */
+/* TWILIO CONFIG */
 const {
   accountSid,
   authToken,
@@ -10,19 +10,19 @@ const {
 } = require('../config').twilio;
 const client = require('twilio')(accountSid, authToken);
 
-/* Mongo configuration */
+/* MONGODB CONFIG */
 const { MongoClient } = require('mongodb');
 const { url, name: dbName } = require('../config').db;
 // Create empty obj to hold mongo db and collection for use in funcs
 const mongo = {};
 // connect to db
 MongoClient.connect(url, (err, db) => {
-  if (err != null) { console.log('Error connecting to db', err) }
+  if (err) throw err;
   // grab 'Askman' database
   const dbo = db.db(dbName);
   // grab and return 'tasks' collection
-  dbo.collection('tasks', (err2, collection) => {
-    if (err2 != null) { console.log('Error retrieving collection', err2) }
+  dbo.collection('tasks', (err0, collection) => {
+    if (err0) throw err0;
     mongo.collection = collection;
   });
 });
@@ -34,8 +34,9 @@ module.exports = {
   getAll: (callback: ([])=>{}) => {
     // grab everything from collection (no filter)
     mongo.collection.find().toArray((err, list) => {
+      if (err) throw err;
       console.log('Retrieved all tasks in DB.');
-      // pass tasks to callback func then close DB
+      // pass tasks to callback func
       callback(list);
     });
   },
