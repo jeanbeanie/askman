@@ -41,6 +41,15 @@ module.exports = {
     });
   },
 
+  insertOne: (task: {}, callback: ([])=>{}) => {
+    mongo.collection.insertOne(task, (err, res) => {
+      if (err) throw err;
+      console.log('Retrieved all tasks in DB.');
+      // pass tasks to callback func
+      callback(res);
+    });
+  },
+
   // Send task ask through Twilio API
   sendSMS: (body: string) => {
     client.messages
