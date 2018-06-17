@@ -20,4 +20,12 @@ Repo for AskMan website, a site that allows set it and forget it asking via SMS.
 > ```npm watch```
 ----------------------
 
+## TODO
+
+- Root page should display all tasks from the DB
+- Add task page submit button should properly save task to DB
+- ScheduleTask should be a function called when server starts and should use node-schedule package to schedule a job for each saved task in the DB (in this case the job is calling sendSMS and passing through the saved task from the DB along with its saved execution datetime)
+- Add task page should have a form input for flipping the state.isWeekly boolean, effecctively switching between the UI "single date" and "weekly date" pickers that already exist
+- Add correct meta info to app config
+
 ...written by me <http://www.twitter.com/onlyjeanbean> ✌🏽🌺
